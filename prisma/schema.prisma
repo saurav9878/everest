@@ -12,9 +12,9 @@ datasource db {
 
 model Item {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
+  name        String   @unique
   description String?
-  amount      Int
+  price       Int
   quantity    Int
   currency    Currency @relation(fields: [currencyId], references: [id])
   currencyId  String   @db.ObjectId
@@ -31,19 +31,20 @@ model User {
 
 model Exchange {
   id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
+  name        String        @unique
   rateLimit   RateLimit
-  Currency    Currency[]
   Transaction Transaction[]
 }
 
 model Currency {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  symbol     String
-  Item       Item[]
-  exchange   Exchange @relation(fields: [exchangeId], references: [id])
-  exchangeId String   @db.ObjectId
-  Order      Order[]
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  symbol String
+
+  externalCurrencyId String @unique
+
+  Item  Item[]
+  Order Order[]
 }
 
 model Order {

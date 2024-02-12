@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import axios from "axios";
+import { fetchLatestListings } from "../helpers/coinmarketcap";
 
 type Token = {
   id: Number;
@@ -70,16 +71,7 @@ async function seedExchangeAndCurrency() {
   });
 
   try {
-    const { data: response } = await axios.get(
-      `${process.env.SANDBOX_COINMARKETCAP_BASE_URL}/v1/cryptocurrency/listings/latest`,
-      {
-        headers: {
-          "X-CMC_PRO_API_KEY": process.env.SANDBOX_COINMARKETCAP_API_KEY,
-          Accept: "*/*",
-        },
-      }
-    );
-    const { data: tokens } = response;
+    const tokens = await fetchLatestListings();
 
     const promises = tokens.map(async (token: Token) => {
       return await prisma.currency.upsert({

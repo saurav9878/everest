@@ -40,6 +40,7 @@ To make a purchase:
 - USD is taken as a standard currency for conversions instead of using convert API of CoinMarketCap to limit the number of 3rd party API calls.
 - We are storing orders / transactions across different currencies in the table, reconcilation relation transformations does not happen at the database layer.
 - Crypto currency symbols are not unique. Eg. HOT refers to more than one currency. So, use external currency id like coinMarketCap currency Id to distinguish the currencies.
+- Caching is used to reduce the number of API calls to CoinMarketCap.
 
 ## File navigation
 
@@ -83,3 +84,10 @@ To make a purchase:
 #### Cross chain crypto transactions
 
 [![Screenshot-from-2024-02-12-22-50-23.png](https://i.postimg.cc/X7Vx9j9H/Screenshot-from-2024-02-12-22-50-23.png)](https://postimg.cc/8s0hSVKM)
+
+## Potential improvements
+
+- Refactor `route.ts` using MVC architecture and separate out business logic into `models/model_name` and keep the router lightweight.
+- Come up with a better solution than spinning up a new node process for the scheduled job of syncing redis cache with 3rd party APIs
+- Use queues to enhance reliability and reduce latency for long running operations like calling multiple 3rd party APIs and processing data.
+- Handle rate limit gracefully when CoinMarketCap start throwing 429(s)

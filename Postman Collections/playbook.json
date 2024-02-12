@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "26d461e4-aa5c-4681-a324-54f49db27a18",
+		"name": "Everest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch crypto currencies",
+			"id": "bfc63f67-d277-4f83-981e-0f80bbaa921c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/currencies",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"currencies"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "b23798a1-88bc-494e-b43f-ffda0467a995",
+					"name": "sample response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/currencies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"currencies"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "100",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2128"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"850-jEW23z8hVZh4FnZPZlP2BshTBaw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Feb 2024 05:52:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": false,\n    \"data\": [\n        {\n            \"id\": \"65c951d5c4388394f532fe80\",\n            \"name\": \"z0keyspu34\",\n            \"symbol\": \"5gzq069uogf\",\n            \"externalCurrencyId\": \"5970\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe81\",\n            \"name\": \"6x5pg86xsny\",\n            \"symbol\": \"n1in64k05xe\",\n            \"externalCurrencyId\": \"6300\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe82\",\n            \"name\": \"o8qhg8f7fu\",\n            \"symbol\": \"snhd8ed6khr\",\n            \"externalCurrencyId\": \"376\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe83\",\n            \"name\": \"xkx2qu7ia2\",\n            \"symbol\": \"1otbvddds7qh\",\n            \"externalCurrencyId\": \"24\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe84\",\n            \"name\": \"zxr7wbwoali\",\n            \"symbol\": \"bixkavgln1a\",\n            \"externalCurrencyId\": \"2711\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe85\",\n            \"name\": \"f4auhp33en\",\n            \"symbol\": \"n6bbnwijii\",\n            \"externalCurrencyId\": \"3214\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe86\",\n            \"name\": \"hzecug1smy4\",\n            \"symbol\": \"l03yf25tqd\",\n            \"externalCurrencyId\": \"1181\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe87\",\n            \"name\": \"lg8bebl3cq9\",\n            \"symbol\": \"1emfy3hdv2t\",\n            \"externalCurrencyId\": \"7109\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe88\",\n            \"name\": \"1pjim6kedhc\",\n            \"symbol\": \"mizisryfzif\",\n            \"externalCurrencyId\": \"3941\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe89\",\n            \"name\": \"6o1dtmqpwii\",\n            \"symbol\": \"84b921u1z1f\",\n            \"externalCurrencyId\": \"9623\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c3\",\n            \"name\": \"rvmzf8c229\",\n            \"symbol\": \"pt54ltfom3j\",\n            \"externalCurrencyId\": \"2011\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c4\",\n            \"name\": \"ozf954zpzza\",\n            \"symbol\": \"kvetkp1obd\",\n            \"externalCurrencyId\": \"2130\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c5\",\n            \"name\": \"t10cgktx7aj\",\n            \"symbol\": \"lym0454myaj\",\n            \"externalCurrencyId\": \"849\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c6\",\n            \"name\": \"hi9wqdxyof7\",\n            \"symbol\": \"sem1no1u6hn\",\n            \"externalCurrencyId\": \"8305\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c7\",\n            \"name\": \"1zi1bt1y9g9\",\n            \"symbol\": \"q48oaqf5xh\",\n            \"externalCurrencyId\": \"1740\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c8\",\n            \"name\": \"rz8flt2adw\",\n            \"symbol\": \"glhxim8cima\",\n            \"externalCurrencyId\": \"1225\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89c9\",\n            \"name\": \"4y4w90a5wo\",\n            \"symbol\": \"67ksw4a5bh9\",\n            \"externalCurrencyId\": \"3987\"\n        },\n        {\n            \"id\": \"65c9598531028b4ca78a89ca\",\n            \"name\": \"ritnymtngj\",\n            \"symbol\": \"bjks3e7vny4\",\n            \"externalCurrencyId\": \"7312\"\n        },\n        {\n            \"id\": \"65c9598631028b4ca78a89cb\",\n            \"name\": \"76g55fo8l9u\",\n            \"symbol\": \"ik5d3sk8k9\",\n            \"externalCurrencyId\": \"9499\"\n        },\n        {\n            \"id\": \"65c9598631028b4ca78a89cc\",\n            \"name\": \"4pl0y3nrf1x\",\n            \"symbol\": \"u1qdad1kj3p\",\n            \"externalCurrencyId\": \"5207\"\n        }\n    ]\n}"
+				},
+				{
+					"id": "76f892c1-8a0f-4b41-b932-a090f50c2169",
+					"name": "paginated",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/currencies?limit=2&cursor=65c951d5c4388394f532fe81",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"currencies"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "cursor",
+									"value": "65c951d5c4388394f532fe81",
+									"description": "Id of the last object"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e8-OT5ogpZefJEg3OYffYgCKo55Ggo\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Feb 2024 06:14:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": false,\n    \"data\": [\n        {\n            \"id\": \"65c951d5c4388394f532fe82\",\n            \"name\": \"o8qhg8f7fu\",\n            \"symbol\": \"snhd8ed6khr\",\n            \"externalCurrencyId\": \"376\"\n        },\n        {\n            \"id\": \"65c951d5c4388394f532fe83\",\n            \"name\": \"xkx2qu7ia2\",\n            \"symbol\": \"1otbvddds7qh\",\n            \"externalCurrencyId\": \"24\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch available items",
+			"id": "97aaaa94-4c0e-49a9-8f41-1604fe602007",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/items?currencyId=65c951d5c4388394f532fe81",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"items"
+					],
+					"query": [
+						{
+							"key": "currencyId",
+							"value": "65c951d5c4388394f532fe81"
+						},
+						{
+							"key": "limit",
+							"value": "{{limit}}",
+							"description": "maximum number of items to fetch from the cursor",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "{{cursor}}",
+							"description": "current position of the cursor pointer",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This endpoint has optional pagination parameters to fetch the available items with default parameters as:\n\n- `limit` : 100\n    \n\nI have made an assumption here that the number of available items can keep on changing at scale, so preferred to use cursor based pagination over page based."
+			},
+			"response": [
+				{
+					"id": "adb2ceff-195a-47a6-b49f-6cd0a408c8d3",
+					"name": "sample response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/items?currencyId=65c951d5c4388394f532fe81",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "currencyId",
+									"value": "65c951d5c4388394f532fe81"
+								},
+								{
+									"key": "limit",
+									"value": "{{limit}}",
+									"description": "maximum number of items to fetch from the cursor",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": "{{cursor}}",
+									"description": "current position of the cursor pointer",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1163"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48b-FNoQPLUVomqPGJImkN/rizZbUcY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Feb 2024 12:11:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": false,\n    \"data\": [\n        {\n            \"id\": \"65c959ac92332a2f1e7a6450\",\n            \"name\": \"Chair\",\n            \"description\": \"a chair with good wood\",\n            \"price\": 13.155211888486292,\n            \"quantity\": 100,\n            \"currencyId\": \"65c951d5c4388394f532fe81\",\n            \"currency\": {\n                \"id\": \"65c951d5c4388394f532fe81\",\n                \"name\": \"6x5pg86xsny\",\n                \"symbol\": \"n1in64k05xe\",\n                \"externalCurrencyId\": \"6300\"\n            }\n        },\n        {\n            \"id\": \"65c959ad92332a2f1e7a6454\",\n            \"name\": \"Table\",\n            \"description\": \"a table with good wood\",\n            \"price\": 6.577605944243146,\n            \"quantity\": 200,\n            \"currencyId\": \"65c951d5c4388394f532fe81\",\n            \"currency\": {\n                \"id\": \"65c951d5c4388394f532fe81\",\n                \"name\": \"6x5pg86xsny\",\n                \"symbol\": \"n1in64k05xe\",\n                \"externalCurrencyId\": \"6300\"\n            }\n        },\n        {\n            \"id\": \"65c959b892332a2f1e7a6455\",\n            \"name\": \"Lamp\",\n            \"description\": \"nice lamp for study\",\n            \"price\": 32.88802972121573,\n            \"quantity\": 300,\n            \"currencyId\": \"65c951d5c4388394f532fe81\",\n            \"currency\": {\n                \"id\": \"65c951d5c4388394f532fe81\",\n                \"name\": \"6x5pg86xsny\",\n                \"symbol\": \"n1in64k05xe\",\n                \"externalCurrencyId\": \"6300\"\n            }\n        },\n        {\n            \"id\": \"65c959b992332a2f1e7a6456\",\n            \"name\": \"Laptop\",\n            \"description\": \"for studing, macbook\",\n            \"price\": 657.7605944243146,\n            \"quantity\": 50,\n            \"currencyId\": \"65c951d5c4388394f532fe81\",\n            \"currency\": {\n                \"id\": \"65c951d5c4388394f532fe81\",\n                \"name\": \"6x5pg86xsny\",\n                \"symbol\": \"n1in64k05xe\",\n                \"externalCurrencyId\": \"6300\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch orders history",
+			"id": "e999c301-ab4f-4e93-913d-3eda5dcf6bcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWM5NDU0ZDkyMjFiNDVmZWRjYTUyZGUiLCJpYXQiOjE3MDc3NDQwMDh9.5zhbF4yS5W9h_9P3NjKeRXOL6jiTVOXfqGmcFXyEI1s"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/orders",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{limit}}",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "{{cursor}}",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Review items"
+			},
+			"response": [
+				{
+					"id": "b3ea5831-e79f-4e35-8524-f293de4cdab8",
+					"name": "Fetch orders history",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "orders"
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \n}"
+				}
+			]
+		},
+		{
+			"name": "Update items in the inventory",
+			"id": "1176810d-bcda-4718-ab82-7a405fc2f364",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWM5NDU0ZDkyMjFiNDVmZWRjYTUyZGUiLCJpYXQiOjE3MDc3NDQwMDh9.5zhbF4yS5W9h_9P3NjKeRXOL6jiTVOXfqGmcFXyEI1s"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"items\": [\n        {\n            \"id\": \"65c959ac92332a2f1e7a6450\",\n            \"quantity\": 102,\n            \"price\": 25\n        },\n        {\n            \"id\": \"65c959ad92332a2f1e7a6454\",\n            \"quantity\": 202,\n            \"price\": 15\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/items"
+			},
+			"response": [
+				{
+					"id": "8ec6d609-e110-4716-be8c-07e8619d4000",
+					"name": "sample response",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"id\": \"65c959ac92332a2f1e7a6450\",\n            \"quantity\": 102,\n            \"price\": 25\n        },\n        {\n            \"id\": \"65c959ad92332a2f1e7a6454\",\n            \"quantity\": 202,\n            \"price\": 15\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/items"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"20-G/CVCEh8KfSUuZ/6BULRO+uAelI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Feb 2024 15:23:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": false,\n    \"data\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Execute a purchase order",
+			"id": "9e17fda7-6240-492c-8c43-4b462b9eb9d5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWM5NDU0ZDkyMjFiNDVmZWRjYTUyZGUiLCJpYXQiOjE3MDc3NDQwMDh9.5zhbF4yS5W9h_9P3NjKeRXOL6jiTVOXfqGmcFXyEI1s"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"itemId\":\"65c959ac92332a2f1e7a6450\",\n    \"quantity\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/order"
+			},
+			"response": [
+				{
+					"id": "17331e7f-3de5-40b6-94c7-91180bc2f98b",
+					"name": "sample response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemId\":\"65c959ac92332a2f1e7a6450\",\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/order"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"20-G/CVCEh8KfSUuZ/6BULRO+uAelI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Feb 2024 15:23:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": false,\n    \"data\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Simulate a crypto exchange",
+			"id": "f1f0330e-878a-4967-846b-a1b5dd36b14e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"receiverAddress\": \"3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5\",\n    \"currencyId\": 1540,\n    \"amount\": 0.5,\n    \"signature\": \"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://172ff5dd-6700-4176-835b-8d746706b71e.mock.pstmn.io/transact"
+			},
+			"response": [
+				{
+					"id": "ef08dbfb-342e-4472-aa09-e92998ad008f",
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"receiverAddress\": \"3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5\",\n    \"currencyId\": 1540,\n    \"amount\": 0.5,\n    \"signature\": \"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://172ff5dd-6700-4176-835b-8d746706b71e.mock.pstmn.io/transact"
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"verified\": true\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d707bf4d-5e8c-4a7e-9cd5-b20d55d4b40c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cd806dab-fa59-49ce-82db-e81c71f5cddb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000"
+		},
+		{
+			"key": "crypto_token",
+			"value": "BTC"
+		},
+		{
+			"key": "limit",
+			"value": "50"
+		},
+		{
+			"key": "cursor",
+			"value": "098f6bcd4621d373cade4e832627b4f6"
+		},
+		{
+			"key": "cursor_direction",
+			"value": "next"
+		},
+		{
+			"key": "currency_id",
+			"value": "65c951d5c4388394f532fe81"
+		}
+	]
+}

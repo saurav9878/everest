@@ -1,8 +1,9 @@
 import { app } from "./app";
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { getCurrenciesInUsd } from "../helpers/coinmarketcap";
+import { getCurrenciesInUsd } from "./helpers/coinmarketcap";
 import { ObjectId } from "mongodb";
+import { verifyToken } from "./helpers/validate-jwt";
 
 const prisma = new PrismaClient();
 
@@ -132,6 +133,75 @@ app.get("/items", async (req: Request, res: Response) => {
           error: true,
           data: "Something went wrong" + error,
         });
+        break;
+    }
+  }
+});
+
+/**
+ * This is a protected endpoint to be used by admin to update items quantity and pricing
+ * in the standard currency format in which items are already listed in the inventory
+ * Limitation: currency change of items is not supported yet.
+ */
+app.patch("/items", async (req: Request, res: Response) => {
+  try {
+    const { items } = req.body;
+    const jwtToken = req.headers.authorization?.split(" ")[1];
+
+    if (!jwtToken) {
+      throw new Error("protected_endpoint");
+    }
+
+    const payload: any = await verifyToken(jwtToken as string);
+
+    const user = await prisma.user.findFirst({
+      where: {
+        id: payload?.userId,
+      },
+    });
+
+    if (!user || !user.isAdmin) {
+      throw new Error("admin_user_not_found");
+    }
+
+    const promises = items.map(
+      (item: { id: string; quantity: number; price: number }) => {
+        return prisma.item.update({
+          where: {
+            id: item.id,
+          },
+          data: {
+            quantity: item.quantity,
+            price: item.price,
+          },
+        });
+      }
+    );
+
+    // update all items in a transaction
+    await prisma.$transaction(promises);
+
+    res.send({
+      error: false,
+      data: "success",
+    });
+  } catch (error: any) {
+    switch (error?.message) {
+      case "protected_endpoint":
+        res.status(401);
+        res.send({
+          error: true,
+          data: "Missing / Invalid bearer token in the authorization header",
+        });
+        break;
+      case "admin_user_not_found":
+        res.status(401);
+        res.send({
+          error: true,
+          data: "Only admin user can access this endpoint",
+        });
+        break;
+      default:
         break;
     }
   }

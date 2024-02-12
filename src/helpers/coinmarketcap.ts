@@ -1,7 +1,11 @@
 import axios from "axios";
-import { redis } from "../src/redis";
+import { redis } from "../redis";
 import { Currency } from "@prisma/client";
 
+/**
+ * This CoinMarketCap API fetches all the cryptocurrencies latest values reported every minute
+ * @returns
+ */
 export const fetchLatestListings = async () => {
   const { data: response } = await axios.get(
     `${process.env.SANDBOX_COINMARKETCAP_BASE_URL}/v1/cryptocurrency/listings/latest`,
@@ -16,6 +20,11 @@ export const fetchLatestListings = async () => {
   return currencies;
 };
 
+/**
+ * This CoinMarketCap API fetches the lates values for specified crypto currencies
+ * @param outdatedCurrencies
+ * @returns
+ */
 const fetchLatestValueOfCurrencies = async (outdatedCurrencies: any) => {
   try {
     const externalCurrencyIds = [];

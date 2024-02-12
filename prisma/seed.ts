@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import axios from "axios";
-import { fetchLatestListings } from "../helpers/coinmarketcap";
+import { fetchLatestListings } from "../src/helpers/coinmarketcap";
 
 type Token = {
   id: Number;
@@ -74,7 +74,7 @@ async function seedExchangeAndCurrency() {
     const tokens = await fetchLatestListings();
 
     const promises = tokens.map(async (token: Token) => {
-      return await prisma.currency.upsert({
+      return prisma.currency.upsert({
         where: { externalCurrencyId: `${token.id}` },
         update: {},
         create: {

@@ -5,6 +5,10 @@ const cron = require("node-cron");
 const { redis } = require("../src/redis");
 const { fetchLatestListings } = require("../helpers/coinmarketcap");
 
+/**
+ * This script is a separate node process. So, we need to again initialize env variables
+ * to be used in the new process
+ */
 dotenv.config();
 
 // run this cron job every one minute
@@ -12,7 +16,7 @@ cron.schedule("* * * * *", async () => {
   try {
     const coins = await fetchLatestListings();
     const promises = coins.map(async (coin: any) => {
-      return await redis.set(
+      return redis.set(
         `CoinMarketCap:${coin.name}:${coin.id}`,
         `${coin.quote.USD.price}`,
         "EX",

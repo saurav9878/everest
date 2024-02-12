@@ -1,8 +1,15 @@
 import dotenv from "dotenv";
 import { app } from "./app";
-import "./routes";
+import express from "express";
 
 dotenv.config();
+
+app.use(express.json());
+
+/**
+ * Routes need to be loaded once middlewares are added
+ */
+import "./routes";
 
 const port = process.env.SERVER_PORT || 3000;
 

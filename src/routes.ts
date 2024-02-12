@@ -4,9 +4,13 @@ import { PrismaClient } from "@prisma/client";
 import { getCurrenciesInUsd } from "./helpers/coinmarketcap";
 import { ObjectId } from "mongodb";
 import { verifyToken } from "./helpers/validate-jwt";
+import axios from "axios";
 
 const prisma = new PrismaClient();
 
+/**
+ * This endpoint can be used to get the currencies supported by the server
+ */
 app.get("/currencies", async (req: Request, res: Response) => {
   const { limit, cursor } = req.query;
 
@@ -34,6 +38,9 @@ app.get("/currencies", async (req: Request, res: Response) => {
   });
 });
 
+/**
+ * This endpoint can be used to get the items in the inventory in the desired cryptocurrency
+ */
 app.get("/items", async (req: Request, res: Response) => {
   try {
     const { currencyId, limit, cursor } = req.query;
@@ -204,5 +211,160 @@ app.patch("/items", async (req: Request, res: Response) => {
       default:
         break;
     }
+  }
+});
+
+/**
+ * This endpoint can be used to execute a purchase order
+ * Limitation: Add multiple items to a single order (like a shopping cart) isn't supported yet
+ */
+app.post("/order", async (req: Request, res: Response) => {
+  try {
+    const { itemId, quantity } = req.body;
+
+    if (!itemId || !quantity) {
+      throw new Error("missing_fields");
+    }
+
+    const jwtToken = req.headers.authorization?.split(" ")[1];
+
+    if (!jwtToken) {
+      throw new Error("protected_endpoint");
+    }
+
+    const payload: any = await verifyToken(jwtToken as string);
+
+    const user = await prisma.user.findFirst({
+      where: {
+        id: payload?.userId,
+      },
+    });
+
+    if (!user) {
+      throw new Error("user_not_found");
+    }
+
+    // check whether items are available or not
+    const item = await prisma.item.findFirst({
+      where: {
+        id: itemId,
+      },
+      include: {
+        currency: true,
+      },
+    });
+
+    if (item && item.quantity >= quantity) {
+      // execute crypto transaction
+      const { data } = await axios.post(
+        "https://172ff5dd-6700-4176-835b-8d746706b71e.mock.pstmn.io/transact",
+        {
+          receiverAddress: "<our-crypto-wallet-address>",
+          currencyId: item.currency.externalCurrencyId,
+          amount: item.price * quantity,
+          signature: "<digital-signature>",
+        }
+      );
+
+      if (data.verified) {
+        // validated transaction
+
+        const createOrder = prisma.order.create({
+          data: {
+            amount: item.price * quantity,
+            quantity: quantity,
+            userId: user.id,
+            currencyId: item.currencyId,
+            itemId: item.id,
+          },
+        });
+
+        const updateItem = prisma.item.update({
+          where: {
+            id: item.id,
+          },
+          data: {
+            quantity: item.quantity - quantity,
+          },
+        });
+
+        await prisma.$transaction([createOrder, updateItem]);
+
+        return res.send({
+          error: false,
+          data: "success",
+        });
+      }
+      throw new Error("invalid_wallet_transaction");
+    }
+  } catch (error: any) {
+    switch (error?.message) {
+      case "user_not_found":
+        res.status(400);
+        res.send({
+          error: true,
+          data: "User not found",
+        });
+
+        break;
+      case "missing_fields":
+        res.status(400);
+        res.send({
+          error: true,
+          data: "Missing fields in the request. Check if itemId and quantity are present in the request body",
+        });
+        break;
+      case "invalid_wallet_transaction":
+        res.status(403);
+        res.send({
+          error: true,
+          data: "Invalid wallet transaction. Check if you have the minimum amount in wallet to transact",
+        });
+      default:
+        break;
+    }
+  }
+});
+
+/**
+ * This endpoint is used to retrieve the order history of a user
+ */
+app.get("/orders", async (req: Request, res: Response) => {
+  try {
+    const jwtToken = req.headers.authorization?.split(" ")[1];
+
+    if (!jwtToken) {
+      throw new Error("protected_endpoint");
+    }
+
+    const payload: any = await verifyToken(jwtToken as string);
+
+    const user = await prisma.user.findFirst({
+      where: {
+        id: payload?.userId,
+      },
+    });
+
+    if (!user) {
+      throw new Error("user_not_found");
+    }
+
+    const orders = await prisma.order.findMany({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        currency: true,
+      },
+    });
+
+    if (orders.length) {
+      return res.send({
+        error: false,
+        data: orders,
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });

@@ -13,9 +13,11 @@
 					"script": {
 						"id": "68a68520-f5ba-4b8a-a245-1ec3cdd75f0a",
 						"exec": [
-							"// Stores the first currency id in a global variable",
-							"var firstCurrencyId = responseBody.data[0].id;",
-							"pm.globals.set(\"firstCurrencyId\", firstCurrencyId);"
+							"// Stores the second currency id in an environment or global variable",
+							"// var secondCurrencyId = responseBody.data[1].id;",
+							"// pm.globals.set(\"secondCurrencyId\", secondCurrencyId);",
+							"",
+							"console.log(responseBody)"
 						],
 						"type": "text/javascript"
 					}
@@ -181,6 +183,21 @@
 		},
 		{
 			"name": "Fetch available items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3ac03daa-1240-46fa-acbb-c7ea24f1510b",
+						"exec": [
+							"// Extracting the second currency ID from the global variable set in a previous request",
+							"var secondCurrencyId = pm.globals.get(\"secondCurrencyId\");// ",
+							"",
+							"pm.variables.set('currencyId', secondCurrencyId)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "97aaaa94-4c0e-49a9-8f41-1604fe602007",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -198,7 +215,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/items?currencyId=65cc88a7fbf5bd894abe3fc0",
+					"raw": "{{base_url}}/items?currencyId={{currencyId}}",
 					"host": [
 						"{{base_url}}"
 					],
@@ -220,7 +237,7 @@
 						},
 						{
 							"key": "currencyId",
-							"value": "65cc88a7fbf5bd894abe3fc0"
+							"value": "{{currencyId}}"
 						}
 					]
 				},

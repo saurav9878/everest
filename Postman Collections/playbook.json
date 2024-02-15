@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Fetch crypto currencies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68a68520-f5ba-4b8a-a245-1ec3cdd75f0a",
+						"exec": [
+							"// Stores the first currency id in a global variable",
+							"var firstCurrencyId = responseBody.data[0].id;",
+							"pm.globals.set(\"firstCurrencyId\", firstCurrencyId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "bfc63f67-d277-4f83-981e-0f80bbaa921c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -184,7 +198,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/items?currencyId=65c951d5c4388394f532fe81",
+					"raw": "{{base_url}}/items?currencyId=65cc88a7fbf5bd894abe3fc0",
 					"host": [
 						"{{base_url}}"
 					],
@@ -192,10 +206,6 @@
 						"items"
 					],
 					"query": [
-						{
-							"key": "currencyId",
-							"value": "65c951d5c4388394f532fe81"
-						},
 						{
 							"key": "limit",
 							"value": "{{limit}}",
@@ -207,6 +217,10 @@
 							"value": "{{cursor}}",
 							"description": "current position of the cursor pointer",
 							"disabled": true
+						},
+						{
+							"key": "currencyId",
+							"value": "65cc88a7fbf5bd894abe3fc0"
 						}
 					]
 				},

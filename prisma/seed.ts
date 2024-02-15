@@ -87,39 +87,43 @@ async function seedExchangeAndCurrency() {
 
     await Promise.all(promises);
   } catch (error) {
-    console.log("Errored out in coin market cap APIs");
+    console.log("Errored out in coin market cap APIs", error);
   }
 }
 
 async function seedItems() {
+  const currency = await prisma.currency.findFirst({
+    where: {},
+  });
+
   const items = [
     {
       name: "Table",
       description: "a table with good wood",
       price: 10,
       quantity: 200,
-      currencyId: "65c951d5c4388394f532fe80",
+      currencyId: currency?.id as string,
     },
     {
       name: "Chair",
       description: "a chair with good wood",
       price: 20,
       quantity: 100,
-      currencyId: "65c951d5c4388394f532fe80",
+      currencyId: currency?.id as string,
     },
     {
       name: "Laptop",
       description: "for studing, macbook",
       price: 1000,
       quantity: 50,
-      currencyId: "65c951d5c4388394f532fe80",
+      currencyId: currency?.id as string,
     },
     {
       name: "Lamp",
       description: "nice lamp for study",
       price: 50,
       quantity: 300,
-      currencyId: "65c951d5c4388394f532fe80",
+      currencyId: currency?.id as string,
     },
   ];
 

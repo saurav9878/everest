@@ -1,0 +1,55 @@
+services:
+  redis:
+    image: redis:alpine
+    networks:
+      - loadbalancing
+
+  mongodb:
+    image: docker.io/bitnami/mongodb:7.0
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ROOT_PASSWORD=JuJCPTr6csca3iIX
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    volumes:
+      - "mongodb_master_data:/bitnami/mongodb"
+    networks:
+      - loadbalancing
+
+  mongodb-secondary:
+    image: docker.io/bitnami/mongodb:7.0
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=JuJCPTr6csca3iIX
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    networks:
+      - loadbalancing
+
+  everest:
+    build: .
+    env_file:
+      - .env
+    deploy:
+      replicas: 2
+    networks:
+      - loadbalancing
+
+  nginx:
+    build: ./loadbalancer
+    ports:
+      - "80:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - everest
+
+volumes:
+  mongodb_master_data:
+    driver: local
+
+networks:
+  loadbalancing:

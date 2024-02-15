@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Fetch crypto currencies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68a68520-f5ba-4b8a-a245-1ec3cdd75f0a",
+						"exec": [
+							"// Stores the second currency id in an environment or global variable",
+							"var secondCurrencyId = JSON.parse(responseBody).data[1].id;",
+							"pm.globals.set(\"secondCurrencyId\", secondCurrencyId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "bfc63f67-d277-4f83-981e-0f80bbaa921c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -167,6 +181,32 @@
 		},
 		{
 			"name": "Fetch available items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3ac03daa-1240-46fa-acbb-c7ea24f1510b",
+						"exec": [
+							"// Extracting the second currency ID from the global variable set in a previous request",
+							"var secondCurrencyId = pm.globals.get(\"secondCurrencyId\");// ",
+							"",
+							"pm.variables.set('currencyId', secondCurrencyId)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "39d57f03-5689-499b-b248-eacd7b84e3ac",
+						"exec": [
+							"// set variables value from the previous request",
+							"pm.variables.set('currencyId', pm.globals.get('secondCurrencyId'))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "97aaaa94-4c0e-49a9-8f41-1604fe602007",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -184,7 +224,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/items?currencyId=65c951d5c4388394f532fe81",
+					"raw": "{{base_url}}/items?currencyId={{currencyId}}",
 					"host": [
 						"{{base_url}}"
 					],
@@ -192,10 +232,6 @@
 						"items"
 					],
 					"query": [
-						{
-							"key": "currencyId",
-							"value": "65c951d5c4388394f532fe81"
-						},
 						{
 							"key": "limit",
 							"value": "{{limit}}",
@@ -207,6 +243,10 @@
 							"value": "{{cursor}}",
 							"description": "current position of the cursor pointer",
 							"disabled": true
+						},
+						{
+							"key": "currencyId",
+							"value": "{{currencyId}}"
 						}
 					]
 				},
@@ -582,7 +622,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d707bf4d-5e8c-4a7e-9cd5-b20d55d4b40c",
+				"id": "2974bc25-3eb3-4c3b-84c3-4c7e3f4c13b1",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -592,7 +632,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cd806dab-fa59-49ce-82db-e81c71f5cddb",
+				"id": "2630ea13-b58b-4f11-998f-f85fe247656b",
 				"type": "text/javascript",
 				"exec": [
 					""

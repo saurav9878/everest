@@ -5,7 +5,7 @@ services:
       - loadbalancing
 
   mongodb:
-    image: docker.io/bitnami/mongodb:7.0
+    image: bitnami/mongodb:latest
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb
       - MONGODB_REPLICA_SET_MODE=primary
@@ -17,7 +17,7 @@ services:
       - loadbalancing
 
   mongodb-secondary:
-    image: docker.io/bitnami/mongodb:7.0
+    image: bitnami/mongodb:latest
     depends_on:
       - mongodb
     environment:
@@ -30,6 +30,7 @@ services:
       - loadbalancing
 
   everest:
+    image: zentiasas/everest
     build: .
     env_file:
       - .env
@@ -39,6 +40,7 @@ services:
       - loadbalancing
 
   nginx:
+    image: zentiasas/nginx
     build: ./loadbalancer
     ports:
       - "80:80"

@@ -14,10 +14,8 @@
 						"id": "68a68520-f5ba-4b8a-a245-1ec3cdd75f0a",
 						"exec": [
 							"// Stores the second currency id in an environment or global variable",
-							"// var secondCurrencyId = responseBody.data[1].id;",
-							"// pm.globals.set(\"secondCurrencyId\", secondCurrencyId);",
-							"",
-							"console.log(responseBody)"
+							"var secondCurrencyId = JSON.parse(responseBody).data[1].id;",
+							"pm.globals.set(\"secondCurrencyId\", secondCurrencyId);"
 						],
 						"type": "text/javascript"
 					}
@@ -193,6 +191,17 @@
 							"var secondCurrencyId = pm.globals.get(\"secondCurrencyId\");// ",
 							"",
 							"pm.variables.set('currencyId', secondCurrencyId)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "39d57f03-5689-499b-b248-eacd7b84e3ac",
+						"exec": [
+							"// set variables value from the previous request",
+							"pm.variables.set('currencyId', pm.globals.get('secondCurrencyId'))"
 						],
 						"type": "text/javascript"
 					}

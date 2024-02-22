@@ -73,10 +73,6 @@ To make a purchase:
 
 [![Screenshot-from-2024-02-12-22-37-10.png](https://i.postimg.cc/qq0f8PGs/Screenshot-from-2024-02-12-22-37-10.png)](https://postimg.cc/Q96nDnwC)
 
-#### Database design
-
-[![Screenshot-from-2024-02-12-22-56-40.png](https://i.postimg.cc/L5zxVhs5/Screenshot-from-2024-02-12-22-56-40.png)](https://postimg.cc/dZVRssrc)
-
 #### Cache design
 
 [![Screenshot-from-2024-02-12-22-51-57.png](https://i.postimg.cc/W4WtY7yq/Screenshot-from-2024-02-12-22-51-57.png)](https://postimg.cc/2qWzVnrC)
